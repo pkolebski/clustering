@@ -32,6 +32,12 @@ plot_pur <- function (report, max_k) {
   return(plot)
 }
 
+vis_clusters <- function(k, dataset, t) {
+  clusters <- kmeans(dataset, centers = k, iter.max = 10, nstart = 25)
+  fviz_cluster(clusters, data = subset(dataset, select = -Target), main = t) + theme(
+    plot.title = element_text(hjust = 0.5, size = 25))
+}
+
 plot_results <- function (results, optimal, max_k, name) {
   custom_theme <- theme(
     plot.title = element_text(hjust = 0.5, size = 25),

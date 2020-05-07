@@ -67,3 +67,8 @@ main <- function () {
 }
 
 main()
+
+
+vis_clusters(3, wine$dataset, "Wine Dataset")
+vis_clusters(3, seeds$dataset, "Seeds Dataset")
+vis_clusters(6, glass$dataset, "Glass Dataset")
