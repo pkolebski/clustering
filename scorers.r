@@ -57,8 +57,12 @@ get_purity_score <- function (dataset, targets, k, method, dist_metric, iter_max
     else {
       cls <- pam(dataset, k, metric = dist_metric, stand = TRUE)
     }
-    pur <- purity(targets, cls$cluster)
-    mean_purity <- mean_purity + mean(pur$pur)
+    pur <- ClusterPurity(cls$cluster, targets)
+    mean_purity <- mean_purity + mean(pur)
   }
   return(mean_purity / iters)
+}
+
+ClusterPurity <- function (clusters, classes) {
+  sum(apply(table(classes, clusters), 2, max)) / length(clusters)
 }
